@@ -15,7 +15,7 @@ function App() {
   return (
     <div>
       <div className="board">
-        {cards.map(({card,index : number})=> (
+        {cards.map((card,index : number)=> (
             <div className={"card-outer" + ((activeCards.indexOf(index) !== -1) ? 'flipped' : '')}  onClick={() => flipCard(index)}>
           <div className="card">
             <div className="front">
