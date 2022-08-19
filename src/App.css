@@ -28,7 +28,8 @@ body {
     transition: all 0.3s;
 }
 
-.card .front, .card .back {
+.card .front,
+.card .back {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -47,4 +48,10 @@ body {
 
 .card-outer:hover .card {
     transform: rotateY(0);
+}
+
+.stats {
+    color: #fff;
+    padding: 20px;
+    font-size: 13px;
 }
