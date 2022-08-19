@@ -2,15 +2,32 @@ import './App.css';
 import Images from './Images';
 import {useState} from "react";
 import {shuffle} from 'loadsh';
-import { initial } from 'lodash';
+
 
 function App() {
   const [cards,setCards] = useState( shuffle([...Images, ...Images]) );
   const [activeCards, setActiveCards] = useState({initialState : []});
+  const [foundMatches, setFoundMatches] = useState({initialState: []});
 
   function flipCard(index) {
-     setActiveCards({value : [index]})
+    if (activeCards.length === 0) {
+      setActiveCards({value : [index]});
+    }
+    if (activeCards.length === 1) {
+      setActiveCards({value:[...activeCards, index]});
+    }
+   if (activeCards.length === 2) {
+    const firstIndex = activeCards[0];
+    const secondsIndex = activeCards[1];
+    
+    if (cards[firstIndex] === cards[secondsIndex]) {
+      alert('Your found a pair')
+    }
+    
+    setActiveCards({value : [index]});
+   }
   }
+
 
   return (
     <div>
