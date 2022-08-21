@@ -42,7 +42,7 @@ function App() {
   return (
     <div>
       <div className="board">
-        {cards.map((card, index: number) => {
+        {cards.map((card, index : number) => {
           const flippedToFront =
             activeCards.indexOf(index) !== -1 ||
             foundPairs.indexOf(index) !== -1;
