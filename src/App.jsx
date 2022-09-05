@@ -7,10 +7,10 @@ function App() {
   const [cards, setCards] = useState(
     shuffle({ collection: [...Images, ...Images] })
   );
-  const [clicks, setClicks] = useState({ initialState: [0] });
-  const { won, setWon } = useState({ initialState: false });
-  const [activeCards, setActiveCards] = useState({ initialState: [] });
-  const [foundPairs, setFoundPairs] = useState({ initialState: [] });
+  const [clicks, setClicks] = useState(0);
+  const { won, setWon } = useState(false);
+  const [activeCards, setActiveCards] = useState([]);
+  const [foundPairs, setFoundPairs] = useState([]);
 
   function flipCard(index) {
     if (won) {
@@ -42,20 +42,23 @@ function App() {
   return (
     <div>
       <div className="board">
-        {cards.map((card, index : number) => {
+        {cards.map((card, index) => {
           const flippedToFront =
             activeCards.indexOf(index) !== -1 ||
             foundPairs.indexOf(index) !== -1;
           return (
             <div
+              key={index}
               className={"card-outer" + (flippedToFront ? "flipped" : "")}
               onClick={() => flipCard(index)}
             >
               <div className="card">
                 <div className="front">
-                  <img src={card} alt="" />
+                  <img height={300} width={400} src={card} alt="" />
                 </div>
-                <div className="back"></div>
+                <div className="back">
+                  <img src={Images[index].image} alt="" />
+                </div>
               </div>
             </div>
           );
@@ -67,7 +70,7 @@ function App() {
         </>
       )}
       <div className="stats">
-        Clicks: {clicks} &nbsp; &nbsp; &nbsp; Found pairs:
+        Clicks: {clicks} Found pairs:
         {foundPairs.length / 2}
       </div>
     </div>
